@@ -7,13 +7,10 @@ const gitRootDir = __dirname + '/../';
 const messageFile = path.normalize(gitRootDir + '/' + process.argv[2]);
 const message = fs.readFileSync(messageFile, {encoding: 'utf-8'});
 
-console.log(`message .${messageFile}.`)
-
 // allow exceptions
 if (message.startsWith('Pull request') || message.startsWith('Merge pull request')) {
     process.exit(0);
 }
-
 if (message.startsWith('major release') || message.startsWith('minor release') || message.startsWith('patch release')) {
     process.exit(0);
 }
@@ -21,7 +18,7 @@ if (message.startsWith('major release') || message.startsWith('minor release') |
 const parts = message.split(" ")
 
 if (parts.length < 2) {
-    console.log('not enough')
+    console.log('commit message needs to have at least two parts')
     reportError()
 }
 const issue = parts[0]
@@ -35,11 +32,13 @@ if (!valid) {
     reportError()
 }
 
+// message start with non whitespace character
+// [^\s] match a single character not present in the list
 const messageStart = parts[1]
-const messageFormat = /^[^\s].+/
+const messageFormat = /^[^\s].*/
 const validMessage = messageFormat.test(messageStart)
 if (!validMessage) {
-    console.log(`message error .${messageStart}.`)
+    console.log('commit description cannot start with whitespace character')
     reportError()
 }
 
