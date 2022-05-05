@@ -19,6 +19,7 @@ if (
 ) {
   process.exit(0);
 }
+
 if (message.startsWith("release")) {
   process.exit(0);
 }
