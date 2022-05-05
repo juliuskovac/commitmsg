@@ -5,22 +5,26 @@ const gitRootDir = __dirname + '/../';
 const messageFile = path.normalize(gitRootDir + '/' + process.argv[2]);
 const message = fs.readFileSync(messageFile, {encoding: 'utf-8'});
 
+const parts = message.split(" ")[0]
+if (parts.length < 2) {
+    reportError()
+}
 const issue = message.split(" ")[0]
 
 // https://stackoverflow.com/questions/19322669/regular-expression-for-a-jira-identifier
 var jira_matcher = /\d+-[A-Z]+(?!-?[a-zA-Z]{1,10})/g
 
+const issueReversed = reverse(issue)
+const valid = jira_matcher.test(issueReversed)
+if (!valid) { 
+    reportError()
+}
+
 function reverse(s) {
     return [...s].reverse().join("");
 }
 
-const issueReversed = reverse(issue)
-
-const valid = jira_matcher.test(issueReversed)
-
-if (valid) { 
-    console.log('valid JIRA issue format')
-} else {
-    console.log('invalid JIRA issue format')
+function reportError() {
+    console.log('please use commit message in format "JIRA-nnnn your message"')
     process.exit(1);
 }
