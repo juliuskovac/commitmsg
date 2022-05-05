@@ -6,6 +6,7 @@ const messageFile = path.normalize(gitRootDir + '/' + process.argv[2]);
 const message = fs.readFileSync(messageFile, {encoding: 'utf-8'});
 
 const parts = message.split(" ")[0]
+console.log(parts.length)
 if (parts.length < 2) {
     reportError()
 }
