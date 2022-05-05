@@ -2,6 +2,6 @@
 
 
 printenv
-print $1
+$1
 
 node .husky/index.js $1
