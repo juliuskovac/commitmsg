@@ -1,2 +1,2 @@
 #!/bin/sh
-node .husky/index.js $1
+node .husky/commit-check.js $1
