@@ -11,6 +11,7 @@ const message = fs.readFileSync(messageFile, {encoding: 'utf-8'});
 if (message.startsWith('Pull request') || message.startsWith('Merge pull request')) {
     process.exit(0);
 }
+
 if (message.startsWith('major release') || message.startsWith('minor release') || message.startsWith('patch release')) {
     process.exit(0);
 }
