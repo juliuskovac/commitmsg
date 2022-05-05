@@ -5,8 +5,6 @@ const gitRootDir = __dirname + '/../';
 const messageFile = path.normalize(gitRootDir + '/' + process.argv[2]);
 const message = fs.readFileSync(messageFile, {encoding: 'utf-8'});
 
-console.log('message', message);
-
 const issue = message.split(" ")[0]
 
 // https://stackoverflow.com/questions/19322669/regular-expression-for-a-jira-identifier

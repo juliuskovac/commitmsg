@@ -1,3 +1,2 @@
 #!/bin/sh
-
 node .husky/index.js $1
