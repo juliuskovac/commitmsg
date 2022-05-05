@@ -13,11 +13,18 @@ if (parts.length < 2) {
 const issue = parts[0]
 
 // https://stackoverflow.com/questions/19322669/regular-expression-for-a-jira-identifier
-var jira_matcher = /\d+-[A-Z]+(?!-?[a-zA-Z]{1,10})/g
+const jiraFormat = /\d+-[A-Z]+(?!-?[a-zA-Z]{1,10})/g
 
 const issueReversed = reverse(issue)
-const valid = jira_matcher.test(issueReversed)
+const valid = jiraFormat.test(issueReversed)
 if (!valid) { 
+    reportError()
+}
+
+const messageStart = parts[1]
+const messageFormat = /^[^\s].+$/
+const validMessage = messageFormat.test(messageStart)
+if (!validMessage) { 
     reportError()
 }
 
