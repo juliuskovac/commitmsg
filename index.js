@@ -1,1 +1,1 @@
-console.log('index in root')
+console.log('index in root2')
