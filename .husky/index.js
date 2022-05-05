@@ -19,6 +19,7 @@ if (message.startsWith('major release') || message.startsWith('minor release') |
 const parts = message.split(" ")
 
 if (parts.length < 2) {
+    console.log('not enough')
     reportError()
 }
 const issue = parts[0]
