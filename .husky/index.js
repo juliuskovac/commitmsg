@@ -45,6 +45,6 @@ function reverse(s) {
 }
 
 function reportError(reason) {
-    console.log(`please use commit message in format "JIRA-nnnn commit description", reason ${reason}`)
+    console.log(`please use commit message in format "JIRA-nnnn commit description" (${reason})`)
     process.exit(1);
 }
