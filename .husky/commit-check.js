@@ -28,6 +28,7 @@ const parts = message.split(" ");
 if (parts.length < 2) {
   reportError("commit message needs to have at least two parts");
 }
+
 const issue = parts[0];
 
 // https://stackoverflow.com/questions/19322669/regular-expression-for-a-jira-identifier
