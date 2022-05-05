@@ -1,4 +1,7 @@
 #!/bin/sh
-. "$(dirname "$0")/_/husky.sh"
 
-node .husky/index.js
+
+printenv
+print $1
+
+node .husky/index.js $1
