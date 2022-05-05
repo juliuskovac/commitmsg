@@ -1,0 +1,23 @@
+{
+  "name": "commitmsg",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare": "husky install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/juliuskovac/commitmsg.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/juliuskovac/commitmsg/issues"
+  },
+  "homepage": "https://github.com/juliuskovac/commitmsg#readme",
+  "devDependencies": {
+    "husky": "^7.0.4"
+  }
+}
