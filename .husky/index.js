@@ -18,8 +18,7 @@ if (message.startsWith('major release') || message.startsWith('minor release') |
 const parts = message.split(" ")
 
 if (parts.length < 2) {
-    console.log('commit message needs to have at least two parts')
-    reportError()
+    reportError( 'commit message needs to have at least two parts')
 }
 const issue = parts[0]
 
@@ -29,7 +28,7 @@ const jiraFormat = /\d+-[A-Z]+(?!-?[a-zA-Z]{1,10})/g
 const issueReversed = reverse(issue)
 const valid = jiraFormat.test(issueReversed)
 if (!valid) { 
-    reportError()
+    reportError('invalid JIRA issue')
 }
 
 // message start with non whitespace character
@@ -38,15 +37,14 @@ const messageStart = parts[1]
 const messageFormat = /^[^\s].*/
 const validMessage = messageFormat.test(messageStart)
 if (!validMessage) {
-    console.log('commit description cannot start with whitespace character')
-    reportError()
+    reportError('invalid commit description')
 }
 
 function reverse(s) {
     return [...s].reverse().join("");
 }
 
-function reportError() {
-    console.log('please use commit message in format "JIRA-nnnn commit description"')
+function reportError(reason) {
+    console.log(`please use commit message in format "JIRA-nnnn commit description", reason ${reason}`)
     process.exit(1);
 }
