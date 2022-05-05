@@ -7,6 +7,8 @@ const gitRootDir = __dirname + '/../';
 const messageFile = path.normalize(gitRootDir + '/' + process.argv[2]);
 const message = fs.readFileSync(messageFile, {encoding: 'utf-8'});
 
+console.log(`message .${messageFile}.`)
+
 // allow exceptions
 if (message.startsWith('Pull request') || message.startsWith('Merge pull request')) {
     process.exit(0);
@@ -34,9 +36,10 @@ if (!valid) {
 }
 
 const messageStart = parts[1]
-const messageFormat = /^[^\s].+$/
+const messageFormat = /^[^\s].+/
 const validMessage = messageFormat.test(messageStart)
-if (!validMessage) { 
+if (!validMessage) {
+    console.log(`message error .${messageStart}.`)
     reportError()
 }
 
