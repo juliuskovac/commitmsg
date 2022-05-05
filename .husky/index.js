@@ -1,12 +1,22 @@
 const fs = require('fs');
+const { request } = require('http');
+const { release } = require('os');
 const path = require('path');
 
 const gitRootDir = __dirname + '/../';
 const messageFile = path.normalize(gitRootDir + '/' + process.argv[2]);
 const message = fs.readFileSync(messageFile, {encoding: 'utf-8'});
 
+// allow exceptions
+if (message.startsWith('Pull request') || message.startsWith('Merge pull request')) {
+    process.exit(0);
+}
+if (message.startsWith('major release') || message.startsWith('minor release') || message.startsWith('patch release')) {
+    process.exit(0);
+}
+
 const parts = message.split(" ")
-console.log(parts.length)
+
 if (parts.length < 2) {
     reportError()
 }
@@ -33,6 +43,6 @@ function reverse(s) {
 }
 
 function reportError() {
-    console.log('please use commit message in format "JIRA-nnnn your message"')
+    console.log('please use commit message in format "JIRA-nnnn commit description"')
     process.exit(1);
 }
